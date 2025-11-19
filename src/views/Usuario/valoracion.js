@@ -5,7 +5,7 @@ import NotificationContainer from '../../components/NotificationContainer';
 import { useNotification } from '../../hooks/useNotification';
 import '../styles.css';
 
-const API_URL = PROCESS.ENV.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 
 function Valoracion() {
   
@@ -447,3 +447,4 @@ function Valoracion() {
 
 
 export default Valoracion;
+
