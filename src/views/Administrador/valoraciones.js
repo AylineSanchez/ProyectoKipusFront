@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../../components/Layout_Admin';
 import '../styles.css';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function ValoracionesAdministrador() {
   const [valoraciones, setValoraciones] = useState([]);
   const [estadisticas, setEstadisticas] = useState({
@@ -36,7 +38,7 @@ function ValoracionesAdministrador() {
       }
 
       // Cargar estadísticas
-      const statsResponse = await fetch('http://localhost:5000/api/valoraciones/estadisticas');
+      const statsResponse = await fetch(`${API_URL}/api/valoraciones/estadisticas`);
       const statsResult = await statsResponse.json();
 
       if (statsResult.success) {
@@ -46,7 +48,7 @@ function ValoracionesAdministrador() {
       }
 
       // Cargar valoraciones detalladas
-      const valResponse = await fetch('http://localhost:5000/api/admin/valoraciones', {
+      const valResponse = await fetch(`${API_URL}/api/admin/valoraciones`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
