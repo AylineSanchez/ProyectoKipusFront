@@ -16,6 +16,8 @@ import aireadorImg from '../../assets/aireador.png';
 import dobleDescargaImg from '../../assets/dobledescarga.png';
 import reductorEstanqueImg from '../../assets/reductorestanque.png';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const EvaluacionAgua = () => {
   const [precioAgua, setPrecioAgua] = useState({
     consumoAguaPotable: '',
@@ -129,7 +131,7 @@ const EvaluacionAgua = () => {
         console.log('🔍 Cargando artefactos desde la base de datos...');
         
         // Cargar artefactos básicos
-        const artefactosResponse = await fetch('http://localhost:5000/api/artefactos');
+        const artefactosResponse = await fetch('`${API_URL}/api/artefactos`);
         const artefactosResult = await artefactosResponse.json();
         
         if (!artefactosResult.success) {
@@ -137,7 +139,7 @@ const EvaluacionAgua = () => {
         }
 
         // Cargar medidas de ahorro
-        const medidasResponse = await fetch('http://localhost:5000/api/artefactos/medidas');
+        const medidasResponse = await fetch(`${API_URL}/api/artefactos/medidas`);
         const medidasResult = await medidasResponse.json();
         
         if (!medidasResult.success) {
@@ -1003,5 +1005,6 @@ const EvaluacionAgua = () => {
     </Layout>
   );
 };
+
 
 export default EvaluacionAgua;
