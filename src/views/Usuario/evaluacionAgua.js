@@ -89,7 +89,7 @@ const EvaluacionAgua = () => {
 
         console.log('🔍 Cargando datos de vivienda...');
         
-        const response = await fetch('http://localhost:5000/api/vivienda/datos', {
+        const response = await fetch(`${API_URL}/api/vivienda/datos`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -278,7 +278,7 @@ const EvaluacionAgua = () => {
 
       console.log('💾 Guardando cantidad de personas:', numeroPersonas);
       
-      const response = await fetch('http://localhost:5000/api/vivienda/actualizar-personas', {
+      const response = await fetch(`${API_URL}/api/vivienda/actualizar-personas`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -317,7 +317,7 @@ const EvaluacionAgua = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const response = await fetch('http://localhost:5000/api/vivienda/datos', {
+      const response = await fetch(`${API_URL}/api/vivienda/datos`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -643,7 +643,7 @@ const EvaluacionAgua = () => {
 
       console.log('📤 Datos a guardar:', datosEvaluacion);
 
-      const response = await fetch('http://localhost:5000/api/evaluacion-agua/guardar', {
+      const response = await fetch(`${API_URL}/api/evaluacion-agua/guardar`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1008,3 +1008,4 @@ const EvaluacionAgua = () => {
 
 
 export default EvaluacionAgua;
+
