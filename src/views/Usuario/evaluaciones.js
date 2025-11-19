@@ -4,6 +4,8 @@ import '../styles.css';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function Evaluaciones() {
   const [user, setUser] = useState({});
   const [evaluacionesCalefaccion, setEvaluacionesCalefaccion] = useState([]);
@@ -31,7 +33,7 @@ function Evaluaciones() {
         return;
       }
 
-      const responseCalefaccion = await fetch('http://localhost:5000/api/evaluaciones/mis-evaluaciones', {
+      const responseCalefaccion = await fetch(`${API_URL}/api/evaluaciones/mis-evaluaciones`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -44,7 +46,7 @@ function Evaluaciones() {
         }
       }
 
-      const responseAgua = await fetch('http://localhost:5000/api/evaluacion-agua/mis-evaluaciones', {
+      const responseAgua = await fetch(`${API_URL}/api/evaluacion-agua/mis-evaluaciones`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
