@@ -8,6 +8,8 @@ import logoUtalca from '../../assets/logo_utalca.png';
 import NotificationContainer from '../../components/NotificationContainer';
 import { useNotification } from '../../hooks/useNotification';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function RecuperarPassword() {
   const [paso, setPaso] = useState(1); // 1: email, 2: código, 3: nueva contraseña
   const [formData, setFormData] = useState({
@@ -42,7 +44,7 @@ function RecuperarPassword() {
     setLoading(true);
     
     try {
-      const response = await fetch('http://localhost:5000/api/auth/solicitar-reset-password', {
+      const response = await fetch(`${API_URL}/api/auth/solicitar-reset-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -80,7 +82,7 @@ function RecuperarPassword() {
     setLoading(true);
     
     try {
-      const response = await fetch('http://localhost:5000/api/auth/verificar-codigo', {
+      const response = await fetch(`${API_URL}/api/auth/verificar-codigo`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -130,7 +132,7 @@ function RecuperarPassword() {
     setLoading(true);
     
     try {
-      const response = await fetch('http://localhost:5000/api/auth/cambiar-password', {
+      const response = await fetch(`${API_URL}/api/auth/cambiar-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
