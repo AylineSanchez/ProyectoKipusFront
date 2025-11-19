@@ -5,7 +5,10 @@ import NotificationContainer from '../../components/NotificationContainer';
 import { useNotification } from '../../hooks/useNotification';
 import '../styles.css';
 
+const API_URL = PROCESS.ENV.REACT_APP_API_URL;
+
 function Valoracion() {
+  
   const [puntuacion, setPuntuacion] = useState(0);
   const [puntuacionTemporal, setPuntuacionTemporal] = useState(0);
   const [feedback, setFeedback] = useState('');
@@ -28,7 +31,7 @@ function Valoracion() {
   useEffect(() => {
     const inicializar = async () => {
       try {
-        const healthResponse = await fetch('http://localhost:5000/api/health');
+        const healthResponse = await fetch(`${API_URL}/api/health`);
         if (healthResponse.ok) {
           setServidorConectado(true);
           await cargarEstadisticas();
@@ -45,7 +48,7 @@ function Valoracion() {
 
   const cargarEstadisticas = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/valoraciones/estadisticas');
+      const response = await fetch(`${API_URL}/api/valoraciones/estadisticas`);
       const result = await response.json();
 
       if (result.success) {
@@ -63,7 +66,7 @@ function Valoracion() {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const response = await fetch('http://localhost:5000/api/valoraciones/mi-valoracion-hoy', {
+      const response = await fetch(`${API_URL}/api/valoraciones/mi-valoracion-hoy`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -149,7 +152,7 @@ function Valoracion() {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/api/valoraciones', {
+      const response = await fetch(`${API_URL}/api/valoraciones`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -202,7 +205,7 @@ function Valoracion() {
   const handleReintentarConexion = async () => {
     setError('');
     try {
-      const response = await fetch('http://localhost:5000/api/health');
+      const response = await fetch(`${API_URL}/api/health`);
       if (response.ok) {
         setServidorConectado(true);
         await cargarEstadisticas();
@@ -441,5 +444,6 @@ function Valoracion() {
     </Layout>
   );
 }
+
 
 export default Valoracion;
