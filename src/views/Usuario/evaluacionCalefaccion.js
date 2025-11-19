@@ -4,6 +4,8 @@ import NotificationContainer from '../../components/NotificationContainer';
 import { useNotification } from '../../hooks/useNotification';
 import '../styles.css';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function EvaluacionCalefaccion() {
   // Estados para las superficies
   const [superficies, setSuperficies] = useState({
@@ -255,7 +257,7 @@ function EvaluacionCalefaccion() {
 
         console.log('🔍 Cargando datos de vivienda...');
         
-        const response = await fetch('http://localhost:5000/api/vivienda/datos', {
+        const response = await fetch(`${API_URL}/api/vivienda/datos`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -453,7 +455,7 @@ function EvaluacionCalefaccion() {
     if (!idPrecioUnitario) return 0;
     
     try {
-      const response = await fetch(`http://localhost:5000/api/precios-unitarios/precio/${idPrecioUnitario}`);
+      const response = await fetch(`${API_URL}/api/precios-unitarios/precio/${idPrecioUnitario}`);
       if (response.ok) {
         const result = await response.json();
         return result.data?.precio_total || 0;
@@ -882,12 +884,12 @@ function EvaluacionCalefaccion() {
         setCargandoMateriales(true);
 
         const endpoints = [
-          'http://localhost:5000/api/materiales/muros',
-          'http://localhost:5000/api/materiales/aislantes-muro',
-          'http://localhost:5000/api/materiales/techos',
-          'http://localhost:5000/api/materiales/aislantes-techo',
-          'http://localhost:5000/api/materiales/ventanas',
-          'http://localhost:5000/api/materiales/sistemas-calefaccion',
+          `${API_URL}/api/materiales/muros`,
+          `${API_URL}/api/materiales/aislantes-muro`,
+          `${API_URL}/api/materiales/techos`,
+          `${API_URL}/api/materiales/aislantes-techo`,
+          `${API_URL}/api/materiales/ventanas`,
+          `${API_URL}/api/materiales/sistemas-calefaccion`,
         ];
 
         const responses = await Promise.all(
@@ -965,9 +967,9 @@ function EvaluacionCalefaccion() {
       console.log('🔍 Cargando soluciones de mejora...');
 
       const endpoints = [
-        'http://localhost:5000/api/soluciones/muro',
-        'http://localhost:5000/api/soluciones/techo',
-        'http://localhost:5000/api/soluciones/ventana'
+        `${API_URL}/api/soluciones/muro`,
+        `${API_URL}/api/soluciones/techo`,
+        `${API_URL}/api/soluciones/ventana`
       ];
 
       const responses = await Promise.all(
@@ -1190,7 +1192,7 @@ function EvaluacionCalefaccion() {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/api/vivienda/actualizar-superficies', {
+      const response = await fetch(`${API_URL}/api/vivienda/actualizar-superficies`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -1227,7 +1229,7 @@ function EvaluacionCalefaccion() {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const response = await fetch('http://localhost:5000/api/vivienda/datos', {
+      const response = await fetch(`${API_URL}/api/vivienda/datos`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -1324,7 +1326,7 @@ function EvaluacionCalefaccion() {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/api/evaluaciones/guardar', {
+      const response = await fetch(`${API_URL}/api/evaluaciones/guardar`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -2064,5 +2066,6 @@ function EvaluacionCalefaccion() {
     </Layout>
   );
 }
+
 
 export default EvaluacionCalefaccion;
