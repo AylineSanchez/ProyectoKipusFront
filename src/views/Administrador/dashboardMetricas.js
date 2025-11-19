@@ -6,6 +6,8 @@ import '../styles.css';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function DashboardAdmin() {
   const [filters, setFilters] = useState({
     fechaInicio: '',
@@ -64,7 +66,7 @@ function DashboardAdmin() {
   const cargarRegiones = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/ubicacion/regiones', {
+      const response = await fetch(`${API_URL}/api/ubicacion/regiones', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -108,7 +110,7 @@ function DashboardAdmin() {
       setFiltrosActivos(nuevosFiltros);
 
       // Construir URL con filtros
-      let url = 'http://localhost:5000/api/admin/estadisticas/dashboard-completo-mejorado';
+      let url = `${API_URL}/api/admin/estadisticas/dashboard-completo-mejorado`;
       const params = new URLSearchParams();
       
       if (filters.fechaInicio) params.append('fechaInicio', filters.fechaInicio);
@@ -116,7 +118,7 @@ function DashboardAdmin() {
       if (filters.region !== 'todas') params.append('region', filters.region);
       
       if (params.toString()) {
-        url = `http://localhost:5000/api/admin/estadisticas/filtradas?${params}`;
+        url = `${API_URL}/api/admin/estadisticas/filtradas?${params}`;
       }
 
       console.log('🔄 Solicitando datos del dashboard con filtros:', { filters, url });
@@ -1039,5 +1041,6 @@ function DashboardAdmin() {
     </Layout>
   );
 }
+
 
 export default DashboardAdmin;
