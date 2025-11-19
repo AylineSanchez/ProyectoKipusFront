@@ -66,7 +66,7 @@ function DashboardAdmin() {
   const cargarRegiones = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_URL}/api/ubicacion/regiones', {
+      const response = await fetch(`${API_URL}/api/ubicacion/regiones`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -1044,3 +1044,4 @@ function DashboardAdmin() {
 
 
 export default DashboardAdmin;
+
