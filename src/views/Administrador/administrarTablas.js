@@ -4,6 +4,8 @@ import Layout from '../../components/Layout_Admin';
 import '../styles.css';
 import * as XLSX from 'xlsx';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function AdministrarTablas() {
   const [tablas, setTablas] = useState([]);
   const [tablaSeleccionada, setTablaSeleccionada] = useState('');
@@ -55,7 +57,7 @@ function AdministrarTablas() {
           const token = localStorage.getItem('token');
           
           // Cargar regiones
-          const responseRegiones = await fetch('http://localhost:5000/api/admin/tablas/region', {
+          const responseRegiones = await fetch(`${API_URL}/api/admin/tablas/region`, {
             headers: { 'Authorization': `Bearer ${token}` }
           });
           const resultRegiones = await responseRegiones.json();
@@ -64,7 +66,7 @@ function AdministrarTablas() {
           }
 
           // Cargar comunas
-          const responseComunas = await fetch('http://localhost:5000/api/admin/tablas/comuna', {
+          const responseComunas = await fetch(`${API_URL}/api/admin/tablas/comuna`, {
             headers: { 'Authorization': `Bearer ${token}` }
           });
           const resultComunas = await responseComunas.json();
@@ -216,7 +218,7 @@ function AdministrarTablas() {
 
       for (const tabla of tablasSistema) {
         try {
-          const response = await fetch(`http://localhost:5000/api/admin/tablas/${tabla.nombre}`, {
+          const response = await fetch(`${API_URL}/api/admin/tablas/${tabla.nombre}`, {
             headers: { 'Authorization': `Bearer ${token}` }
           });
           
@@ -326,7 +328,7 @@ function AdministrarTablas() {
 
       console.log('📋 Cargando datos de tabla:', nombreTabla);
 
-      const response = await fetch(`http://localhost:5000/api/admin/tablas/${nombreTabla}`, {
+      const response = await fetch(`${API_URL}/api/admin/tablas/${nombreTabla}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -402,7 +404,7 @@ function AdministrarTablas() {
         tipoRegion: typeof datosProcesados.region
       });
 
-      const response = await fetch(`http://localhost:5000/api/admin/tablas/${tablaSeleccionada}/${idFila}`, {
+      const response = await fetch(`${API_URL}/api/admin/tablas/${tablaSeleccionada}/${idFila}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -458,7 +460,7 @@ function AdministrarTablas() {
         id: idFila
       });
 
-      const response = await fetch(`http://localhost:5000/api/admin/tablas/${tablaSeleccionada}/${idFila}`, {
+      const response = await fetch(`${API_URL}/api/admin/tablas/${tablaSeleccionada}/${idFila}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -500,7 +502,7 @@ function AdministrarTablas() {
         datos: datosProcesados
       });
 
-      const response = await fetch(`http://localhost:5000/api/admin/tablas/${tablaSeleccionada}`, {
+      const response = await fetch(`${API_URL}/api/admin/tablas/${tablaSeleccionada}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
