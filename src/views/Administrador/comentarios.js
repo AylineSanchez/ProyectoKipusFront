@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../../components/Layout_Admin';
 import '../styles.css';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function ComentariosAdministrador() {
   const [comentarios, setComentarios] = useState([]);
   const [estadisticas, setEstadisticas] = useState({
@@ -35,7 +37,7 @@ function ComentariosAdministrador() {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/api/admin/comentarios', {
+      const response = await fetch(`${API_URL}/api/admin/comentarios`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
