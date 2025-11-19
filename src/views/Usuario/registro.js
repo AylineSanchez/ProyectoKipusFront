@@ -8,6 +8,8 @@ import logoUtalca from '../../assets/logo_utalca.png';
 import NotificationContainer from '../../components/NotificationContainer';
 import { useNotification } from '../../hooks/useNotification';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function Registro() {
   const [formData, setFormData] = useState({
     email: '',
@@ -36,7 +38,7 @@ function Registro() {
 
   const cargarRegiones = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/ubicacion/regiones');
+      const response = await fetch(`${API_URL}/api/ubicacion/regiones`);
       const result = await response.json();
       
       if (result.success) {
@@ -53,7 +55,7 @@ function Registro() {
 
   const cargarComunasPorRegion = async (regionId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/ubicacion/comunas/region/${regionId}`);
+      const response = await fetch(`${API_URL}/api/ubicacion/comunas/region/${regionId}`);
       const result = await response.json();
       
       if (result.success) {
@@ -150,7 +152,7 @@ function Registro() {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/registro', {
+      const response = await fetch(`${API_URL}/api/auth/registro`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -352,5 +354,6 @@ function Registro() {
     </div>
   );
 }
+
 
 export default Registro;
