@@ -122,7 +122,7 @@ function Comentario() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-      const response = await fetch('http://localhost:5000/api/comentarios', {
+      const response = await fetch(`${API_URL}/api/comentarios`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -175,7 +175,7 @@ function Comentario() {
   const handleReintentarConexion = async () => {
     setError('');
     try {
-      const response = await fetch('http://localhost:5000/api/health');
+      const response = await fetch(`${API_URL}/api/health`);
       if (response.ok) {
         setServidorConectado(true);
         setError('');
@@ -328,3 +328,4 @@ function Comentario() {
 
 
 export default Comentario;
+
