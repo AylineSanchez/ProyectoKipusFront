@@ -131,7 +131,7 @@ const EvaluacionAgua = () => {
         console.log('🔍 Cargando artefactos desde la base de datos...');
         
         // Cargar artefactos básicos
-        const artefactosResponse = await fetch('`${API_URL}/api/artefactos`);
+        const artefactosResponse = await fetch(`${API_URL}/api/artefactos`);
         const artefactosResult = await artefactosResponse.json();
         
         if (!artefactosResult.success) {
@@ -1008,4 +1008,5 @@ const EvaluacionAgua = () => {
 
 
 export default EvaluacionAgua;
+
 
