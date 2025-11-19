@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../../components/Layout';
 import '../styles.css';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function Comentario() {
   const [formData, setFormData] = useState({
     tipoComentario: '',
@@ -25,7 +27,7 @@ function Comentario() {
     const verificarServidor = async () => {
       try {
         console.log('🔍 Verificando conexión con el servidor...');
-        const response = await fetch('http://localhost:5000/api/health', {
+        const response = await fetch(`${API_URL}/api/health`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -323,5 +325,6 @@ function Comentario() {
     </Layout>
   );
 }
+
 
 export default Comentario;
