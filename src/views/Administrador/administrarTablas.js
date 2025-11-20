@@ -23,26 +23,86 @@ function AdministrarTablas() {
 
   // Tablas disponibles en el sistema
   const tablasSistema = [
-    { nombre: 'usuario', descripcion: 'Usuarios del sistema' },
-    { nombre: 'vivienda', descripcion: 'Datos de viviendas' },
-    { nombre: 'comentario', descripcion: 'Comentarios de usuarios' },
-    { nombre: 'valoracion', descripcion: 'Valoraciones de la aplicación' },
-    { nombre: 'region', descripcion: 'Regiones de Chile' },
-    { nombre: 'comuna', descripcion: 'Comunas de Chile' },
-    { nombre: 'aislante_muro', descripcion: 'Aislantes para muros' },
-    { nombre: 'aislante_techo', descripcion: 'Aislantes para techos' },
-    { nombre: 'artefacto', descripcion: 'Artefactos de calefacción' },
-    { nombre: 'artefacto_ahorro_precio', descripcion: 'Ahorro y precios de artefactos' },
-    { nombre: 'combustible', descripcion: 'Combustibles y eficiencia' },
-    { nombre: 'muros', descripcion: 'Tipos de muros' },
-    { nombre: 'precio_unitario', descripcion: 'Precios unitarios' },
-    { nombre: 'precio_unitario_pm', descripcion: 'Precios unitarios por material' },
-    { nombre: 'tabla_valores', descripcion: 'Valores técnicos de materiales' },
-    { nombre: 'techo', descripcion: 'Tipos de techos' },
-    { nombre: 'ventana', descripcion: 'Tipos de ventanas' },
-    { nombre: 'muro_solucion', descripcion: 'Soluciones de aislamiento para muros' },
-    { nombre: 'techo_solucion', descripcion: 'Soluciones de aislamiento para techos' },
-    { nombre: 'ventana_solucion', descripcion: 'Soluciones de ventanas con valores U' }
+    { 
+        nombre: 'usuario', 
+        descripcion: 'Registro de usuarios del sistema con información de autenticación, datos personales y tipo de usuario (admin/cliente)' 
+    },
+    { 
+        nombre: 'vivienda', 
+        descripcion: 'Características principales de las viviendas evaluadas: ubicación geográfica, superficies, cantidad de habitantes y relación con usuarios' 
+    },
+    { 
+        nombre: 'comentario', 
+        descripcion: 'Sistema de comentarios y feedback de usuarios organizado por tipo, con registro temporal y vinculación al usuario autor' 
+    },
+    { 
+        nombre: 'valoracion', 
+        descripcion: 'Sistema de calificaciones y evaluaciones de la aplicación con puntuaciones numéricas y comentarios de feedback' 
+    },
+    { 
+        nombre: 'region', 
+        descripcion: 'Catálogo de regiones de Chile con identificador único y nombre oficial para geolocalización' 
+    },
+    { 
+        nombre: 'comuna', 
+        descripcion: 'Catálogo de comunas chilenas con su correspondiente región para la ubicación geográfica de viviendas' 
+    },
+    { 
+        nombre: 'aislante_muro', 
+        descripcion: 'Catálogo de materiales aislantes específicos para muros con valores de resistencia térmica y porcentajes de aplicación' 
+    },
+    { 
+        nombre: 'aislante_techo', 
+        descripcion: 'Catálogo de materiales aislantes especializados para techos con valores de resistencia y características técnicas' 
+    },
+    { 
+        nombre: 'artefacto', 
+        descripcion: 'Inventario de artefactos de calefacción y sistemas de climatización con sus consumos promedio diarios' 
+    },
+    { 
+        nombre: 'artefacto_ahorro_precio', 
+        descripcion: 'Análisis económico de artefactos: medidas de ahorro energético, precios unitarios y cálculos de ahorro conservador' 
+    },
+    { 
+        nombre: 'combustible', 
+        descripcion: 'Catálogo técnico de combustibles: eficiencia energética, poder calorífico, precios y factores de emisión de CO2' 
+    },
+    { 
+        nombre: 'muros', 
+        descripcion: 'Tipologías constructivas de muros con valores de transmitancia térmica y porcentajes de composición' 
+    },
+    { 
+        nombre: 'precio_unitario', 
+        descripcion: 'Maestro de precios unitarios para materiales y soluciones constructivas con costos totales calculados' 
+    },
+    { 
+        nombre: 'precio_unitario_pm', 
+        descripcion: 'Desglose detallado de precios por componentes: materiales, unidades, cantidades y costos parciales' 
+    },
+    { 
+        nombre: 'tabla_valores', 
+        descripcion: 'Base de datos técnica de materiales: espesores, densidades, conductividades térmicas y resistencias calculadas' 
+    },
+    { 
+        nombre: 'techo', 
+        descripcion: 'Sistemas constructivos de techos con valores térmicos específicos y composición porcentual de materiales' 
+    },
+    { 
+        nombre: 'ventana', 
+        descripcion: 'Tipos de ventanas y sistemas de acristalamiento con valores de transmitancia térmica (valor U)' 
+    },
+    { 
+        nombre: 'muro_solucion', 
+        descripcion: 'Soluciones de mejora para muros existentes: combinaciones de aislantes, resistencias térmicas alcanzadas y costos' 
+    },
+    { 
+        nombre: 'techo_solucion', 
+        descripcion: 'Propuestas de rehabilitación para techos: mejoras de aislamiento, valores R obtenidos y análisis de costos' 
+    },
+    { 
+        nombre: 'ventana_solucion', 
+        descripcion: 'Opciones de mejora para ventanas: valores U de vidrio y marco, costos por m² y eficiencia térmica total' 
+    }
   ];
 
   useEffect(() => {
