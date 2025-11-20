@@ -959,8 +959,8 @@ function AdministrarTablas() {
                   <strong>{tabla.nombre}</strong>: {tabla.descripcion}
                 </li>
               ))}
-              <li>Funcionalidades disponibles: Agregar, Editar, Eliminar registros en todas las tablas.</li>
-              <li><strong>Nueva funcionalidad:</strong> Descarga de tablas en formato Excel (.xlsx)</li>
+              <li>Funcionalidades disponibles: Agregar, Editar, Eliminar registros en todas las tablas. 
+                Descarga de tablas en formato Excel (.xlsx)</li>
               {cargando && (
                 <li className="cargando-item">
                   ⏳ Procesando operación...
