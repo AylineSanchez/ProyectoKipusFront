@@ -1623,7 +1623,7 @@ function EvaluacionCalefaccion() {
               </div>
 
               {/* MURO - SEGUNDO PISO (SOLO SI HAY SUPERFICIE) */}
-              {superficies.superficie_2 && parseFloat(superficies.superficie_2) > 0 && (
+              {(superficies.superficie_2 && parseFloat(superficies.superficie_2) > 0) ? (
                 <div className="sub-section">
                   <h3>Segundo Piso - Muro</h3>
                   
@@ -1680,7 +1680,7 @@ function EvaluacionCalefaccion() {
                     </div>
                   )}
                 </div>
-              )}
+              ) : null}
 
               {/* TECHO */}
               <div className="sub-section">
@@ -1873,6 +1873,59 @@ function EvaluacionCalefaccion() {
                   <div className="error-mensaje-campo">{errores.consumoAnual}</div>
                 )}
               </div>
+              {/* BARRA DE GRADIENTE DE EFICIENCIA */}
+              <div className="eficiencia-bar-container">
+                <div className="eficiencia-bar-label">
+                  <span>0 kWh/m² año</span>
+                  <span>Eficiencia Energética</span>
+                  <span>160+ kWh/m² año</span>
+                </div>
+                
+                <div className="eficiencia-bar">
+                  {/* Indicador de posición actual */}
+                  {resultados.eficiencia > 0 && (
+                    <div 
+                      className="eficiencia-indicator"
+                      style={{
+                        left: `${getPosicionBarra(resultados.eficiencia)}%`
+                      }}
+                    />
+                  )}
+                </div>
+                
+                {/* Leyenda de colores */}
+                <div className="eficiencia-legend">
+                  <span>≤15</span>
+                  <span>55</span>
+                  <span>90</span>
+                  <span>130</span>
+                  <span>160+</span>
+                </div>
+                
+                {/* Valor actual de eficiencia */}
+                <div 
+                  className="eficiencia-valor-actual"
+                  style={{
+                    color: resultados.eficiencia > 0 ? getColorEficiencia(resultados.eficiencia) : '#666',
+                    borderColor: resultados.eficiencia > 0 ? getColorEficiencia(resultados.eficiencia) : '#dee2e6'
+                  }}
+                >
+                  {resultados.eficiencia > 0 ? (
+                    <>
+                      <div>Eficiencia Actual: <strong>{resultados.eficiencia.toFixed(1)} kWh/m² año</strong></div>
+                      <div className="eficiencia-descripcion">
+                        {resultados.eficiencia <= 15 && '✅ Excelente eficiencia'}
+                        {resultados.eficiencia > 15 && resultados.eficiencia <= 55 && '🟢 Buena eficiencia'}
+                        {resultados.eficiencia > 55 && resultados.eficiencia <= 90 && '🟡 Eficiencia media'}
+                        {resultados.eficiencia > 90 && resultados.eficiencia <= 130 && '🟠 Eficiencia baja'}
+                        {resultados.eficiencia > 130 && '🔴 Eficiencia muy baja'}
+                      </div>
+                    </>
+                  ) : (
+                    'Complete los datos para calcular la eficiencia'
+                  )}
+                </div>
+              </div>
             </div>
 
             {/* SECCIÓN: SOLUCIONES DE MEJORA */}
@@ -1906,7 +1959,7 @@ function EvaluacionCalefaccion() {
               </div>
 
               {/* SOLUCIÓN DE MEJORA - MURO SEGUNDO PISO */}
-              {superficies.superficie_2 && parseFloat(superficies.superficie_2) > 0 && (
+              {(superficies.superficie_2 && parseFloat(superficies.superficie_2) > 0) ? (
                 <div className="sub-section">
                   <h3>Segundo Piso - Solución de Mejora Muro</h3>
                   <div className="input-group">
@@ -1925,7 +1978,7 @@ function EvaluacionCalefaccion() {
                     </select>
                   </div>
                 </div>
-              )}
+              ) : null}
 
               {/* SOLUCIÓN DE MEJORA - TECHO */}
               <div className="sub-section">
@@ -2075,4 +2128,5 @@ function EvaluacionCalefaccion() {
 
 
 export default EvaluacionCalefaccion;
+
 
