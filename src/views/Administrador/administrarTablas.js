@@ -947,32 +947,30 @@ function AdministrarTablas() {
         )}
 
         {/* Información para desarrollo */}
-        <div className="info-desarrollo">
-          <div className="form-nota">
-            <p className="nota-titulo">
-              <span className="nota-icono">✅</span> Sistema de Gestión de Tablas
-            </p>
-            <ul className="nota-lista">
-              <li>El sistema permite gestionar completamente las siguientes tablas:</li>
-              {tablasSistema.map(tabla => (
-                <li key={tabla.nombre}>
-                  <strong>{tabla.nombre}</strong>: {tabla.descripcion}
-                </li>
-              ))}
-              <li>Funcionalidades disponibles: Agregar, Editar, Eliminar registros en todas las tablas. 
-                Descarga de tablas en formato Excel (.xlsx)</li>
-              {cargando && (
-                <li className="cargando-item">
-                  ⏳ Procesando operación...
-                </li>
-              )}
-              {descargandoExcel && (
-                <li className="cargando-item">
-                  ⏳ Generando archivo Excel...
-                </li>
-              )}
-            </ul>
-          </div>
+        <div className="form-nota">
+          <p className="nota-titulo">
+            <span className="nota-icono">✅</span> Sistema de Gestión de Tablas
+          </p>
+          <ul className="nota-lista">
+            <li>El sistema permite gestionar completamente las siguientes tablas:</li>
+            {tablasSistema.map(tabla => (
+              <li key={tabla.nombre}>
+                <strong>{tabla.nombre}</strong>: {tabla.descripcion}
+              </li>
+            ))}
+            <li>Funcionalidades disponibles: Agregar, Editar, Eliminar registros en todas las tablas. 
+              Descarga de tablas en formato Excel (.xlsx)</li>
+            {cargando && (
+              <li className="cargando-item">
+                ⏳ Procesando operación...
+              </li>
+            )}
+            {descargandoExcel && (
+              <li className="cargando-item">
+                ⏳ Generando archivo Excel...
+              </li>
+            )}
+          </ul>
         </div>
       </div>
     </Layout>
