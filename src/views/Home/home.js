@@ -97,7 +97,7 @@ const Home = () => {
           <nav className="header-nav">
             {isLoggedIn ? (
               <>
-                <span className="user-welcome">Bienvenido, {userData.nombre_completo || 'Usuario'}</span>
+                <span className="user-welcome">{userData.nombre_completo ? userData.nombre_completo.split(' ')[0] : 'Usuario'}</span>
                 <button className="nav-btn" onClick={handleGoToDashboard}>
                   Dashboard
                 </button>
@@ -366,3 +366,4 @@ const Home = () => {
 
 
 export default Home;
+
