@@ -6362,146 +6362,72 @@ canvas {
 
 }
 /* ==================================================================
-   FIX DEFINITIVO MÓVIL - SOLUCIONA SOLAPAMIENTO (20 Noviembre 2025)
+   FIX DEFINITIVO MÓVIL - ZOOM 100% PERFECTO + NADA SE SALE (20 Nov 2025)
    ================================================================== */
 
-/* 1. Botón hamburguesa: solo en móvil y nunca tapa el menú */
-.sidebar-toggle {
-  display: none !important;
-  position: fixed;
-  top: 105px !important;        /* Un poco más abajo para no tapar el navbar */
-  left: 12px !important;
-  width: 56px;
-  height: 56px;
-  background: #03A64A;
-  color: white;
-  border: none;
-  border-radius: 14px;
-  font-size: 26px;
-  z-index: 1002 !important;
-  box-shadow: 0 6px 20px rgba(3,166,74,0.45);
-  cursor: pointer;
-  touch-action: manipulation;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
+/* 1. Viewport forzado por CSS por si el HTML no lo respeta al 100% */
+html, body, #root, .app-container, .main-content-container, .home-container, .evaluacion-content {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* Cuando el menú está abierto → botón naranja con X y se mueve encima del menú */
-.sidebar-menu.active ~ .sidebar-toggle,
-.sidebar-toggle.active {
-  background: #F2921D !important;
-  box-shadow: 0 6px 20px rgba(242,146,29,0.45);
-  left: 240px !important;   /* <<-- AQUÍ ESTÁ LA CLAVE: se mueve a la derecha */
-  transform: translateY(-3px);
-}
-
-.sidebar-toggle::before {
-  content: "☰";
-}
-
-.sidebar-menu.active ~ .sidebar-toggle::before,
-.sidebar-toggle.active::before {
-  content: "✕";
-  font-weight: bold;
-}
-
-/* Solo visible en móvil */
-@media (max-width: 768px) {
-  .sidebar-toggle {
-    display: flex !important;
-  }
-}
-
-/* 2. Overlay siempre DETRÁS del menú y del botón */
-.sidebar-overlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  z-index: 998 !important;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
-
-.sidebar-overlay.active {
-  display: block;
-  opacity: 1;
-  pointer-events: all;
-}
-
-/* 3. Sidebar encima del overlay pero debajo del botón cuando está cerrado */
-.sidebar-menu {
-  z-index: 999 !important;
-  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1) !important;
-}
-
-@media (max-width: 768px) {
-  .sidebar-menu {
-    transform: translateX(-100%);
-  }
-  .sidebar-menu.active {
-    transform: translateX(0);
-  }
-}
-
-/* 4. Opciones del menú más fáciles de tocar */
-.sidebar-menu li a {
-  padding: 22px 25px !important;
-  min-height: 68px;
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-}
-
-/* ==================================================================
-   FIX ZOOM EN MÓVIL - HOME Y MIS EVALUACIONES (20 Nov 2025)
-   ================================================================== */
-
-/* Navbar más compacto en móvil */
+/* 2. Navbar perfecto en móvil (compacto y sin forzar zoom) */
 @media (max-width: 768px) {
   .navbar-content {
-    height: 90px !important;        /* Antes 120px → ahora 90px */
-    padding: 0 15px;
+    height: 90px !important;           /* antes 120px */
+    padding: 0 12px !important;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .navbar-brand {
+    gap: 12px;
   }
 
   .navbar-logo {
-    height: 50px !important;         /* Logos más pequeños en móvil */
+    height: 46px !important;           /* tamaño ideal para todos los logos */
   }
 
-  /* En home.js tienes uno con style inline de 80px → este lo fuerza */
-  .navbar img[alt="Universidad de Talca"] {
-    height: 60px !important;
+  /* Logo UTalca que en home.js tiene style inline de 80px */
+  .navbar img {
+    height: 52px !important;
+    max-width: 48vw !important;
+  }
+
+  .navbar-buttons {
+    margin-top: 4px;
+  }
+
+  .btn-nav, .logout-btn {
+    padding: 8px 14px !important;
+    font-size: 13px !important;
   }
 }
 
-/* Fuerza que NADA sobrepase la pantalla */
-html, body, #root, .home-container, .app-container {
-  max-width: 100vw !important;
-  overflow-x: hidden !important;
-}
-
-/* Todas las tarjetas y contenedores de evaluaciones */
+/* 3. Todo el contenido de evaluaciones y home siempre dentro de pantalla */
 .evaluacion-card,
 .evaluaciones-grid,
 .resultados-grid,
 .grafico-barras,
 .barras-container,
-.soluciones,
-.detail-row {
-  max-width: 100% !important;
-  overflow-x: hidden !important;
-  word-wrap: break-word;
-}
-
-/* Barras horizontales que se salían */
 .barra-wrapper,
-.barra {
+.barra,
+.soluciones,
+.detail-row,
+.soluciones ul {
   max-width: 100% !important;
+  overflow: hidden !important;
+  word-break: break-word;
+  box-sizing: border-box !important;
 }
 
+/* 4. Tamaño de texto correcto (ni gigante ni diminuto) */
+body {
+  font-size: 16px !important;
+  -webkit-text-size-adjust: 100% !important;
+}
