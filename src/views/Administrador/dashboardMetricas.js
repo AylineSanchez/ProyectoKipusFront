@@ -628,13 +628,11 @@ function DashboardAdmin() {
       currentY = agregarTexto('DASHBOARD ADMINISTRATIVO', currentY, { 
         fontSize: 20, 
         fontStyle: 'bold', 
-        align: 'center'
       });
       
       currentY = agregarTexto('Resumen completo de métricas y estadísticas', currentY, { 
         fontSize: 12, 
         fontStyle: 'italic', 
-        align: 'center'
       });
       
       currentY += 5;
@@ -1044,4 +1042,5 @@ function DashboardAdmin() {
 
 
 export default DashboardAdmin;
+
 
