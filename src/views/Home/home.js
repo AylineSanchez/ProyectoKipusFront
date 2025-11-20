@@ -283,7 +283,7 @@ const Home = () => {
           <div className="cta-content">
             <h2>¿Listo para optimizar tus recursos?</h2>
             <p>
-              Únete a KIPUS A+ y comienza tu journey hacia la eficiencia energética 
+              Únete a KIPUS A+ y comienza tu viaje hacia la eficiencia energética 
               y la gestión sostenible del agua.
             </p>
             <div className="cta-actions">
@@ -363,5 +363,6 @@ const Home = () => {
     </div>
   );
 };
+
 
 export default Home;
