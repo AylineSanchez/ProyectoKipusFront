@@ -1565,7 +1565,13 @@ function EvaluacionCalefaccion() {
                     onChange={handleChange}
                     required
                     disabled={cargandoMateriales}
-                    className={errores.muroEstructuraPiso1 ? 'error-input' : ''}
+                    className={`form-select ${errores.muroEstructuraPiso1 ? 'error-input' : ''}`}
+                    // Agregar estas propiedades para mejor soporte móvil
+                    size="1" // Importante para móviles
+                    style={{ 
+                      WebkitAppearance: 'menulist-button', // Mejor visual en iOS
+                      fontSize: '16px' // Previene zoom en iOS
+                    }}
                   >
                     <option value="">Seleccione estructura de muro</option>
                     {materiales.muros.map(muro => (
@@ -2069,3 +2075,4 @@ function EvaluacionCalefaccion() {
 
 
 export default EvaluacionCalefaccion;
+
