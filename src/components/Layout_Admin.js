@@ -73,7 +73,7 @@ const Layout = ({ children }) => {
             />
           </div>
           <div className="navbar-buttons">
-            <span id='nombre'>{user.nombre_completo || 'Usuario'}</span>
+            <span id='nombre'>{user.nombre_completo ? user.nombre_completo.split(' ')[0] : 'Usuario'}</span>
             <button 
               className="btn-nav" 
               onClick={handleLogout}
