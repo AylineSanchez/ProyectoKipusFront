@@ -6362,69 +6362,72 @@ canvas {
 
 }
 /* ==================================================================
-   FIX ZOOM EN MÓVIL - HOME Y MIS EVALUACIONES (20 Nov 2025)
+   FIX DEFINITIVO MÓVIL - ZOOM 100% PERFECTO + NADA SE SALE (20 Nov 2025)
    ================================================================== */
 
-/* Navbar más compacto en móvil */
+/* 1. Viewport forzado por CSS por si el HTML no lo respeta al 100% */
+html, body, #root, .app-container, .main-content-container, .home-container, .evaluacion-content {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 2. Navbar perfecto en móvil (compacto y sin forzar zoom) */
 @media (max-width: 768px) {
   .navbar-content {
-    height: 90px !important;        /* Antes 120px → ahora 90px */
-    padding: 0 15px;
+    height: 90px !important;           /* antes 120px */
+    padding: 0 12px !important;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .navbar-brand {
+    gap: 12px;
   }
 
   .navbar-logo {
-    height: 50px !important;         /* Logos más pequeños en móvil */
+    height: 46px !important;           /* tamaño ideal para todos los logos */
   }
 
-  /* En home.js tienes uno con style inline de 80px → este lo fuerza */
-  .navbar img[alt="Universidad de Talca"] {
-    height: 60px !important;
+  /* Logo UTalca que en home.js tiene style inline de 80px */
+  .navbar img {
+    height: 52px !important;
+    max-width: 48vw !important;
+  }
+
+  .navbar-buttons {
+    margin-top: 4px;
+  }
+
+  .btn-nav, .logout-btn {
+    padding: 8px 14px !important;
+    font-size: 13px !important;
   }
 }
 
-/* Fuerza que NADA sobrepase la pantalla */
-html, body, #root, .home-container, .app-container {
-  max-width: 100vw !important;
-  overflow-x: hidden !important;
-}
-
-/* Todas las tarjetas y contenedores de evaluaciones */
+/* 3. Todo el contenido de evaluaciones y home siempre dentro de pantalla */
 .evaluacion-card,
 .evaluaciones-grid,
 .resultados-grid,
 .grafico-barras,
 .barras-container,
-.soluciones,
-.detail-row {
-  max-width: 100% !important;
-  overflow-x: hidden !important;
-  word-wrap: break-word;
-}
-
-/* Barras horizontales que se salían */
 .barra-wrapper,
-.barra {
+.barra,
+.soluciones,
+.detail-row,
+.soluciones ul {
   max-width: 100% !important;
-}
-/* ==================================================================
-   FIX FINAL - ZOOM CORRECTO EN MÓVIL (sin zoom in ni zoom out)
-   ================================================================== */
-
-meta[name="viewport"] {
-  content: "width=device-width, initial-scale=1.0, shrink-to-fit=no" !important;
+  overflow: hidden !important;
+  word-break: break-word;
+  box-sizing: border-box !important;
 }
 
-/* Asegura tamaño de texto normal en móvil (evita que se vea gigante) */
+/* 4. Tamaño de texto correcto (ni gigante ni diminuto) */
 body {
-  font-size: 16px;
-  -webkit-text-size-adjust: 100%;
-}
-
-/* Evita zoom in forzado por Safari/iOS */
-@media screen and (max-width: 768px) {
-  * {
-    -webkit-text-size-adjust: none;
-  }
+  font-size: 16px !important;
+  -webkit-text-size-adjust: 100% !important;
 }
